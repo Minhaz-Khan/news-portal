@@ -35,6 +35,7 @@ const displayAllNews = (allNews) => {
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     allNews.forEach(news => {
+        console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-3');
         newsDiv.innerHTML = `
@@ -58,9 +59,9 @@ const displayAllNews = (allNews) => {
                 </div>
 
                 <div>
-                <i class="fa-solid fa-eye"></i> <span>${news.total_view}
+                <i class="fa-solid fa-eye"></i> <span>${news.total_view ? news.total_view : 'view not found'}
                 </div>
-                <button class="btn btn-primary px-3">deteles</button>
+                <button class="btn btn-primary px-3" onclick="openModal('${news._id}')">Deteles</button>
             </div>
     </div>
         `
@@ -68,6 +69,15 @@ const displayAllNews = (allNews) => {
     })
     isLoading(false);
 }
+
+const openModal = (newsId) => {
+    const url = ` https://openapi.programming-hero.com/api/news/${newsId}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(news => console.log(news))
+}
+
+
 
 const isLoading = (element) => {
     const spinnerContainer = document.getElementById('spinner');
