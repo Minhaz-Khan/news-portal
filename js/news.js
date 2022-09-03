@@ -27,10 +27,11 @@ const getAllNewsData = async (newsId, newsName) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${newsId}`);
     const allNews = await res.json();
     displayAllNews(allNews.data);
+    // item found section 
     const numberofNews = allNews.data.length;
-
     const newsCount = document.getElementById('news-count');
     newsCount.classList.remove('d-none')
+    newsCount.classList.add('bg-white', 'rounded')
     newsCount.innerHTML =
         `
     <div>${numberofNews} items found for category ${newsName}</div>
@@ -92,7 +93,6 @@ const displayAllNews = (allNews) => {
     isLoading(false);
 }
 
-
 const openModal = (newsId) => {
     const url = ` https://openapi.programming-hero.com/api/news/${newsId}`;
     fetch(url)
@@ -101,6 +101,7 @@ const openModal = (newsId) => {
 
 }
 
+// displayOn modal section 
 
 const displayNewsDetails = (news) => {
     console.log(news);
@@ -142,6 +143,10 @@ const isLoading = (element) => {
 
 }
 
-
+document.getElementById('NewsButton').addEventListener('click', function () {
+    getAllNewsListData();
+})
 
 getAllNewsListData();
+
+getAllNewsData(01);

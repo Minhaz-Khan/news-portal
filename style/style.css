@@ -1,3 +1,7 @@
+body {
+    background-color: #F6F6F7;
+}
+
 .cursor-set {
     cursor: pointer;
     text-decoration: none;
