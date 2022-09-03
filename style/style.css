@@ -18,3 +18,12 @@ body {
 .error-massage {
     height: 400px;
 }
+
+.cardBody {
+    overflow: hidden;
+}
+
+.hide-details {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

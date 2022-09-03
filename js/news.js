@@ -12,15 +12,15 @@ const getAllNewsListData = async () => {
 const allListDisplay = (allNewsList) => {
     const newsListContainer = document.getElementById('news-category');
     newsListContainer.innerHTML = `
-    <div class="row g-md-0 g- p-4 justify-content-around align-item-center fw-semibold">
-         <a class=" col-md col-3  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[0].category_id},'${allNewsList[0].category_name}')">${allNewsList[0].category_name}</a>
-         <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[1].category_id},'${allNewsList[1].category_name}')">${allNewsList[1].category_name}</a>
-         <a class=" col-md col-4 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[2].category_id},'${allNewsList[2].category_name}')">${allNewsList[2].category_name}</a>
-         <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[3].category_id},'${allNewsList[3].category_name}')">${allNewsList[3].category_name}</a>
-         <a class=" col-md col-4 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[4].category_id},'${allNewsList[4].category_name}')">${allNewsList[4].category_name}</a>
-         <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[5].category_id},'${allNewsList[5].category_name}')">${allNewsList[5].category_name}</a>
-         <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[6].category_id},'${allNewsList[6].category_name}')">${allNewsList[6].category_name}</a>
-         <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[7].category_id},'${allNewsList[7].category_name}')">${allNewsList[7].category_name}</a>
+    <div class="row g-md-0 g-2 p-md-4 p-1 justify-content-around align-item-center fw-semibold">
+         <a class=" col-md col-3  text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[0].category_id},'${allNewsList[0].category_name}')">${allNewsList[0].category_name}</a>
+         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[1].category_id},'${allNewsList[1].category_name}')">${allNewsList[1].category_name}</a>
+         <a class=" col-md col-4 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[2].category_id},'${allNewsList[2].category_name}')">${allNewsList[2].category_name}</a>
+         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[3].category_id},'${allNewsList[3].category_name}')">${allNewsList[3].category_name}</a>
+         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[4].category_id},'${allNewsList[4].category_name}')">${allNewsList[4].category_name}</a>
+         <a class=" col-md col-4 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[5].category_id},'${allNewsList[5].category_name}')">${allNewsList[5].category_name}</a>
+         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[6].category_id},'${allNewsList[6].category_name}')">${allNewsList[6].category_name}</a>
+         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[7].category_id},'${allNewsList[7].category_name}')">${allNewsList[7].category_name}</a>
     </div>
  `
 }
@@ -33,20 +33,19 @@ const getAllNewsData = async (newsId, newsName) => {
         const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${newsId}`);
         const allNews = await res.json();
         displayAllNews(allNews.data);
+        // item found section 
+        const numberofNews = allNews.data.length;
+        const newsCount = document.getElementById('news-count');
+        newsCount.classList.remove('d-none')
+        newsCount.classList.add('bg-white', 'rounded')
+        newsCount.innerHTML =
+            `
+    <div>${numberofNews} items found for category ${newsName}</div>
+    `
     }
     catch (error) {
         console.log(error)
     }
-    // item found section 
-    const numberofNews = allNews.data.length;
-    const newsCount = document.getElementById('news-count');
-    newsCount.classList.remove('d-none')
-    newsCount.classList.add('bg-white', 'rounded')
-    newsCount.innerHTML =
-        `
-    <div>${numberofNews} items found for category ${newsName}</div>
-    `
-
 
 }
 
@@ -75,9 +74,9 @@ const displayAllNews = (allNews) => {
             <img src="${news.thumbnail_url ? news.thumbnail_url : 'no found img'}" class="w-100 rounded-start" alt="...">
         </div>
         <div class="col-md-8 col-12">
-            <div class="card-body overflow-hidden news-info" style="height:200px;">
+            <div class="card-body cardBody news-info" style="height:200px;">
                 <h5 class="card-title">${news.title ? news.title : 'title not fount'}</h5>
-                <p class="card-text "><small class="text-muted">${news.details ? news.details : 'details not found'}</small></p>
+                <p class="card-text"><small class="text-muted hide-details">${news.details ? news.details : 'details not found'}</small></p>
             </div>
             <div class="ms-3 d-flex align-items-center justify-content-between"> 
                 <div class="author-info d-flex align-items-center">
@@ -165,4 +164,4 @@ document.getElementById('blogButton').addEventListener('click', function () {
 
 getAllNewsListData();
 
-getAllNewsData(01);
+// getAllNewsData(01);
