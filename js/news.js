@@ -11,18 +11,7 @@ const getAllNewsListData = async () => {
 }
 const allListDisplay = (allNewsList) => {
     const newsListContainer = document.getElementById('news-category');
-    newsListContainer.innerHTML = `
-       <div class="row g-md-0 g- p-4 justify-content-around align-item-center fw-semibold">
-            <a class=" col-md col-3  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[0].category_id},'${allNewsList[0].category_name}')">${allNewsList[0].category_name}</a>
-            <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[1].category_id},'${allNewsList[1].category_name}')">${allNewsList[1].category_name}</a>
-            <a class=" col-md col-4 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[2].category_id},'${allNewsList[2].category_name}')">${allNewsList[2].category_name}</a>
-            <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[3].category_id},'${allNewsList[3].category_name}')">${allNewsList[3].category_name}</a>
-            <a class=" col-md col-4 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[4].category_id},'${allNewsList[4].category_name}')">${allNewsList[4].category_name}</a>
-            <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[5].category_id},'${allNewsList[5].category_name}')">${allNewsList[5].category_name}</a>
-            <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[6].category_id},'${allNewsList[6].category_name}')">${allNewsList[6].category_name}</a>
-            <a class=" col-md col-3 text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[7].category_id},'${allNewsList[7].category_name}')">${allNewsList[7].category_name}</a>
-       </div>
-    `
+    newsListContainer.innerHTML = ``
 }
 
 
