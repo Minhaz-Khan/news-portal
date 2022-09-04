@@ -64,8 +64,12 @@ const displayAllNews = (allNews) => {
         errorContainer.classList.add('d-none')
     }
 
+    allNews.sort((a, b) => {
+        return b.total_view - a.total_view;
+    })
 
     allNews.forEach(news => {
+
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card', 'mb-3');
         newsDiv.innerHTML = `
