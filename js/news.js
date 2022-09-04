@@ -109,7 +109,7 @@ const openModal = (newsId) => {
     fetch(url)
         .then(res => res.json())
         .then(news => displayNewsDetails(news.data[0]))
-        .catch(error = console.log(error))
+        .catch(error => console.log(error))
 
 }
 
