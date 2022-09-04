@@ -12,15 +12,15 @@ const getAllNewsListData = async () => {
 const allListDisplay = (allNewsList) => {
     const newsListContainer = document.getElementById('news-category');
     newsListContainer.innerHTML = `
-    <div class="row g-md-0 g-2 p-md-4 p-1 justify-content-around align-item-center fw-semibold">
-         <a class=" col-md col-3  text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[0].category_id},'${allNewsList[0].category_name}')">${allNewsList[0].category_name}</a>
-         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[1].category_id},'${allNewsList[1].category_name}')">${allNewsList[1].category_name}</a>
-         <a class=" col-md col-4 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[2].category_id},'${allNewsList[2].category_name}')">${allNewsList[2].category_name}</a>
-         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[3].category_id},'${allNewsList[3].category_name}')">${allNewsList[3].category_name}</a>
-         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[4].category_id},'${allNewsList[4].category_name}')">${allNewsList[4].category_name}</a>
-         <a class=" col-md col-4 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[5].category_id},'${allNewsList[5].category_name}')">${allNewsList[5].category_name}</a>
-         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[6].category_id},'${allNewsList[6].category_name}')">${allNewsList[6].category_name}</a>
-         <a class=" col-md col-3 text-md-center text-start pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[7].category_id},'${allNewsList[7].category_name}')">${allNewsList[7].category_name}</a>
+    <div class="row g-md-0 gy-2 p-md-4 p-1 justify-content-around align-item-center fw-semibold">
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[0].category_id},'${allNewsList[0].category_name}')">${allNewsList[0].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[1].category_id},'${allNewsList[1].category_name}')">${allNewsList[1].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[2].category_id},'${allNewsList[2].category_name}')">${allNewsList[2].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[3].category_id},'${allNewsList[3].category_name}')">${allNewsList[3].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[4].category_id},'${allNewsList[4].category_name}')">${allNewsList[4].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[5].category_id},'${allNewsList[5].category_name}')">${allNewsList[5].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[6].category_id},'${allNewsList[6].category_name}')">${allNewsList[6].category_name}</a>
+         <a class=" col-md col-12  text-center pe-auto cursor-set" onclick="getAllNewsData(${allNewsList[7].category_id},'${allNewsList[7].category_name}')">${allNewsList[7].category_name}</a>
     </div>
  `
 }
@@ -74,9 +74,9 @@ const displayAllNews = (allNews) => {
             <img src="${news.thumbnail_url ? news.thumbnail_url : 'no found img'}" class="w-100 rounded-start" alt="...">
         </div>
         <div class="col-md-8 col-12">
-            <div class="card-body cardBody news-info" style="height:200px;">
+            <div class="card-body news-info">
                 <h5 class="card-title">${news.title ? news.title : 'title not fount'}</h5>
-                <p class="card-text"><small class="text-muted hide-details">${news.details ? news.details : 'details not found'}</small></p>
+                <p class="card-text"><small class="text-muted">${news.details ? news.details.slice(0, 400) + "..." : 'details not found'}</small></p>
             </div>
             <div class="ms-3 d-flex align-items-center justify-content-between"> 
                 <div class="author-info d-flex align-items-center">
@@ -121,17 +121,20 @@ const displayNewsDetails = (news) => {
     <p>${news.details ? news.details : 'no details found'}</p>
     <div class="d-flex author-info align-items-center justify-content-between">
         <div class="d-flex align-items-center ">
-            <p  class="m-0">Author:</p> <img src="${news.author.img ? news.author.img : 'img not found'}"></img> 
+            <img src="${news.author.img ? news.author.img : 'img not found'}"></img> 
             <div> 
             <p class="m-0">${news.author.name ? news.author.name : 'Name not found'}</p>
             <p class="m-0">${news.author.published_date ? news.author.published_date : 'Date not found'}</p>
             </div>
         </div>
+        <div>
+        <span>Rating: ${news.rating.number ? news.rating.number : 'rating not found'} ${news.rating.badge ? news.rating.badge : 'badge not found'}</span>
+    </div>
         <div class="me-5">
             <i class="fa-solid fa-eye "></i> <span>${news.total_view ? news.total_view : 'view not found'}
          </div>
-        
     </div>
+    
     `
     const titleModal = document.getElementById('exampleModalLabel');
     titleModal.innerText = `${news.title ? news.title : 'title not found'}`
@@ -164,4 +167,4 @@ document.getElementById('blogButton').addEventListener('click', function () {
 
 getAllNewsListData();
 
-// getAllNewsData(01);
+getAllNewsData(01)
